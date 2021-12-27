@@ -25,7 +25,7 @@ model User {
   sessions Session[]
 
   orders           Order[]
-  orderItemDetails OrderItemDetails[]
+  orderItemDetails OrderItemDetail[]
 }
 
 model Session {
@@ -66,7 +66,7 @@ model Order {
   updatedAt   DateTime @updatedAt
   description String?
   closesAt    DateTime
-  finalized   Boolean
+  finalized   Boolean  @default(false)
 
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId Int
@@ -77,27 +77,63 @@ model Order {
   orderItems OrderItem[]
 }
 
+//model FoodItem {
+//  id          Int      @id @default(autoincrement())
+//  name        String
+//  createdAt   DateTime @default(now())
+//  updatedAt   DateTime @updatedAt
+//  description String?
+//
+//  orderItems OrderItem[]
+//
+//  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+//  restaurantId Int
+//}
+//
+
+// NOTE: It's highly recommended to use an enum for the token type
+//       but enums only work in Postgres.
+//       See: https://blitzjs.com/docs/database-overview#switch-to-postgresql
+// enum TokenType {
+//   RESET_PASSWORD
+// }
+
+model Restaurant {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  name      String
+  address   String?
+  phone     String?
+  order     Order[]
+  foodItems FoodItem[]
+}
+
 model OrderItem {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   description String?
 
+  orderItemsDetails OrderItemDetail[]
+
   order   Order @relation(fields: [orderId], references: [id])
   orderId Int
 
-  foodItem   Order @relation(fields: [foodItemId], references: [id])
+  foodItem   FoodItem @relation(fields: [foodItemId], references: [id])
   foodItemId Int
 }
 
-model OrderItemDetails {
-  id       Int @id @default(autoincrement())
-  quantity Int
+model OrderItemDetail {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quantity  Int
 
   user   User @relation(fields: [userId], references: [id])
   userId Int
 
-  orderItem   Order @relation(fields: [orderItemId], references: [id])
+  orderItem   OrderItem @relation(fields: [orderItemId], references: [id])
   orderItemId Int
 }
 
@@ -110,25 +146,6 @@ model FoodItem {
 
   orderItems OrderItem[]
 
-  restaurant   Order @relation(fields: [restaurantId], references: [id])
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId Int
 }
-
-model Restaurant {
-  id        Int        @id @default(autoincrement())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  name      String
-  address   String?
-  email     String
-  phone     String?
-  order     Order[]
-  foodItems FoodItem[]
-}
-
-// NOTE: It's highly recommended to use an enum for the token type
-//       but enums only work in Postgres.
-//       See: https://blitzjs.com/docs/database-overview#switch-to-postgresql
-// enum TokenType {
-//   RESET_PASSWORD
-// }

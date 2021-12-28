@@ -49,7 +49,7 @@ const OrdersPage: BlitzPage = () => {
       <div>
         <p>
           <Link href={Routes.NewOrderPage()}>
-            <a>Create Order</a>
+            <a>Create Order..</a>
           </Link>
         </p>
 

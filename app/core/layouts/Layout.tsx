@@ -8,8 +8,10 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
         <title>{title || "food-app"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Sidebar />
-      {children}
+      <div className="relative min-h-screen flex">
+        <Sidebar />
+        <div className="flex-1 h-screen">{children}</div>
+      </div>
     </>
   )
 }

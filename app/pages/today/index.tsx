@@ -2,6 +2,8 @@ import { Suspense } from "react"
 import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getRestaurants from "app/restaurants/queries/getRestaurants"
+import { OrderCard } from "../../core/components/OrderCard"
+import { OrderCardList } from "../../core/components/OrderCardList"
 
 const ITEMS_PER_PAGE = 100
 
@@ -43,15 +45,11 @@ const TodayPage: BlitzPage = () => {
   return (
     <>
       <Head>
-        <title>Restaurants</title>
+        <title>Today Orders</title>
       </Head>
 
       <div>
-        <p>
-          <Link href={Routes.NewRestaurantPage()}>
-            <a>Create Restaurant</a>
-          </Link>
-        </p>
+        <OrderCardList />
 
         {/*<Suspense fallback={<div>Loading...</div>}>*/}
         {/*  <RestaurantsList />*/}

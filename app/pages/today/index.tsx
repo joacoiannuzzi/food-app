@@ -4,7 +4,7 @@ import Layout from "app/core/layouts/Layout"
 const TodayPage: BlitzPage = () => {
   return (
     <>
-      <div className="bg-gray-100 h-screen">today</div>
+      <div className="bg-gray-100 h-screen">today </div>
     </>
   )
 }

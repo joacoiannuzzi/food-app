@@ -14,8 +14,8 @@ web_modules/
 /.blitz/
 /.next/
 *.sqlite
-db.sqlite
-db_test.sqlite
+db/db.sqlite
+db/db_test.sqlite
 *.sqlite-journal
 .now
 .blitz**

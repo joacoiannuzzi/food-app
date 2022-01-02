@@ -61,12 +61,13 @@ model Token {
 }
 
 model Order {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  description String?
-  closesAt    DateTime
-  finalized   Boolean  @default(false)
+  id            Int             @id @default(autoincrement())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  description   String?
+  closesAt      DateTime
+  finalized     Boolean         @default(false)
+  paymentMethod PaymentMethod[]
 
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId Int
@@ -111,10 +112,12 @@ model OrderItem {
 }
 
 model OrderItemDetail {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  quantity  Int
+  id            Int             @id @default(autoincrement())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  quantity      Int
+  paymentMethod PaymentMethod[]
+  hasPayed      Boolean
 
   user   User @relation(fields: [userId], references: [id])
   userId Int
@@ -134,4 +137,19 @@ model FoodItem {
 
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId Int
+}
+
+model PaymentMethod {
+  id               Int      @id @default(autoincrement())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  name             String // efectivo, transferencia.. etc
+  extraPaymentInfo String? //cbu o alias de ser necesario
+
+  orderItemDetail   OrderItemDetail @relation(fields: [orderItemDetailId], references: [id])
+  orderItemDetailId Int
+
+  order   Order @relation(fields: [orderId], references: [id])
+  orderId Int
+
 }

@@ -14,8 +14,7 @@ web_modules/
 /.blitz/
 /.next/
 *.sqlite
-db/db.sqlite
-db/db_test.sqlite
+db.sqlite
 *.sqlite-journal
 .now
 .blitz**
@@ -56,5 +55,6 @@ lib-cov
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
 .next
-.idea
+/.idea/

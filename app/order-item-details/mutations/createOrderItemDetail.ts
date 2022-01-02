@@ -6,6 +6,7 @@ const CreateOrderItemDetail = z.object({
   quantity: z.number(),
   userId: z.number(),
   orderItemId: z.number(),
+  hasPayed: z.boolean(),
 })
 
 export default resolver.pipe(

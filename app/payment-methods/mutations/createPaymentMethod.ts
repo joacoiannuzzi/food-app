@@ -4,6 +4,9 @@ import { z } from "zod"
 
 const CreatePaymentMethod = z.object({
   name: z.string(),
+  orderItemDetailId: z.number(),
+  orderId: z.number(),
+  extraPaymentInfo: z.string(),
 })
 
 export default resolver.pipe(

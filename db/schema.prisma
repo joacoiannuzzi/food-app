@@ -151,5 +151,4 @@ model PaymentMethod {
 
   order   Order @relation(fields: [orderId], references: [id])
   orderId Int
-
 }

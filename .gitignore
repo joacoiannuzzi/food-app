@@ -15,6 +15,7 @@ web_modules/
 /.next/
 *.sqlite
 db.sqlite
+*.sqlite-journal
 .now
 .blitz**
 blitz-log.log

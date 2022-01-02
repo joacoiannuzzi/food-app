@@ -77,20 +77,6 @@ model Order {
   orderItems OrderItem[]
 }
 
-//model FoodItem {
-//  id          Int      @id @default(autoincrement())
-//  name        String
-//  createdAt   DateTime @default(now())
-//  updatedAt   DateTime @updatedAt
-//  description String?
-//
-//  orderItems OrderItem[]
-//
-//  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
-//  restaurantId Int
-//}
-//
-
 // NOTE: It's highly recommended to use an enum for the token type
 //       but enums only work in Postgres.
 //       See: https://blitzjs.com/docs/database-overview#switch-to-postgresql

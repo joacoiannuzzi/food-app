@@ -56,3 +56,4 @@ lib-cov
 .vscode-test
 
 .next
+.idea
